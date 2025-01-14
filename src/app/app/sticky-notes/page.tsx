@@ -1,11 +1,8 @@
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import StickyNotesMain from "./layout/StickyNotesMain";
 
-import Main from "./layout/Main";
-import Sidebar from "./layout/Sidebar";
-import { TodoProvider } from "@/features/todo/context/TodoContext";
-
-async function AppPage({
+async function StickyNotesPage({
   searchParams,
 }: {
   searchParams: Promise<{ key?: string }>;
@@ -24,14 +21,9 @@ async function AppPage({
 
   return (
     <>
-      <TodoProvider>
-        <section className="w-full p-6 flex gap-2 ">
-          <Main />
-          <Sidebar />
-        </section>
-      </TodoProvider>
+      <StickyNotesMain />
     </>
   );
 }
 
-export default AppPage;
+export default StickyNotesPage;

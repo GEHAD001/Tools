@@ -43,5 +43,5 @@ export async function loginAction(
     };
 
   // 3) [Successfully Then Redirect]
-  return redirect(`/app?key=${user.id}`);
+  return redirect(`/app/todo?key=${user.id}`);
 }

@@ -7,7 +7,7 @@ import {
 } from "@/features/todo/utils/filters";
 import TodoList from "@/features/todo/components/TodoList";
 
-function Main() {
+function TodoMain() {
   const { date, todos, isLoadingTodos } = useTodoContext();
 
   if (isLoadingTodos)
@@ -33,4 +33,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default TodoMain;
