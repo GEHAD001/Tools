@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+  Todo     Todo[]
+}
+
+model Todo {
+  id         String   @id @default(uuid())
+  task       String
+  date       DateTime
+  isComplete Boolean  @default(false)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+// model User {
+//   id           String @id @default(uuid())
+//   age          Int
+//   name         String
+//   email        String @unique
+//   role         Role   @default(BASIC)
+//   preferenceId String @unique
+
+//   // [1:1]
+//   preference UserPreference? @relation(fields: [preferenceId], references: [id])
+
+//   // [1:N]
+//   writtenPosts Post[] @relation("writtenPosts")
+
+//   // [N:M]
+//   favoritePosts Post[]
+
+//   @@index([email])
+// }
+
+// model UserPreference {
+//   id           String  @id @default(uuid())
+//   emailUpdates Boolean
+//   user         User?
+// }
+
+// model Category {
+//   id    String @id @default(uuid())
+//   name  String @unique
+//   posts Post[]
+// }
+
+// model Post {
+//   id           String   @id @default(uuid())
+//   title        String
+//   content      String
+//   isPublic     Boolean  @default(false)
+//   createdAt    DateTime @default(now())
+//   updatedAt    DateTime @updatedAt
+//   authorId     String
+//   favoriteById String
+
+//   // Forigen Key [post by]
+//   author User @relation("writtenPosts", fields: [authorId], references: [id])
+
+//   // How Set This Post in favorite
+//   favoriteBy User[]
+
+//   categories Category[]
+// }
+
+// enum Role {
+//   BASIC
+//   ADMIN
+// }
